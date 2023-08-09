@@ -1,0 +1,19 @@
+server:
+  port: 8087
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/ead_authuser
+    username: root
+    password: 41494899
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+      dialect: org.hibernate.dialect.MySQLDialect
+      jdbc:
+        lob:
+          non-contextual-creation: true
+      properties:
+        hibernate:
+          show_sql: true
