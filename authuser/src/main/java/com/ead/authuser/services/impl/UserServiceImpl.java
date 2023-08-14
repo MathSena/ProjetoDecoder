@@ -54,5 +54,28 @@ public class UserServiceImpl implements UserService {
             logger.info("Attempted to delete a null user or user with null ID");
         }
     }
+
+    @Override
+    public void save(UserModel userModel) {
+        logger.info("Saving user with username: {}", userModel.getUsername());
+        userRepository.save(userModel);
+        logger.info("User with username: {} saved successfully.", userModel.getUsername());
+    }
+
+    @Override
+    public boolean existsByUserName(String username) {
+        logger.info("Checking if username: {} exists.", username);
+        boolean exists = userRepository.existsByUsername(username);
+        logger.info("Username: {} exists: {}", username, exists);
+        return exists;
+    }
+
+    @Override
+    public boolean existsByEmail(String email) {
+        logger.info("Checking if email: {} exists.", email);
+        boolean exists = userRepository.existsByEmail(email);
+        logger.info("Email: {} exists: {}", email, exists);
+        return exists;
+    }
 }
 
