@@ -11,6 +11,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -45,7 +46,7 @@ public class AuthenticationController {
 
     @PostMapping("/signup")
     public ResponseEntity<Object> registerUser(@RequestBody
-            @JsonView(UserDto.UserView.RegistrationPost.class) UserDto userDto) {
+            @JsonView(UserDto.UserView.RegistrationPost.class) @Validated(UserDto.UserView.RegistrationPost.class) UserDto userDto) {
 
         if (userService.existsByUserName(userDto.getUsername())) {
             return new ResponseEntity<>("Error: Username is already taken!", HttpStatus.CONFLICT);
