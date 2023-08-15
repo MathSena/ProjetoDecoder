@@ -22,7 +22,6 @@ public class UserDto {
         interface ImagePut {}
     }
 
-
     private UUID userId;
 
     @NotBlank(groups = UserView.RegistrationPost.class)

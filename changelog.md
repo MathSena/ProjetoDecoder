@@ -12,7 +12,7 @@ All notable changes to this project will be documented in this file.
   - **Date**: 15/08/2023
 
 - Implemented Spring Validation to enhance data validation across the application. This ensures that input data conforms to the expected formats and constraints, improving data integrity and user experience.
-  - **Commit**: Implement JSONView with Multiple Views in APIs
+  - **Commit**: Add Spring Validation for Enhanced Data Validation
   - **Author**: MathSena
   - **Date**: 15/08/2023
 
