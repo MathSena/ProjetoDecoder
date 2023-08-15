@@ -33,6 +33,14 @@
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.springframework.hateoas/spring-hateoas -->
+        <dependency>
+            <groupId>org.springframework.hateoas</groupId>
+            <artifactId>spring-hateoas</artifactId>
+            <version>2.1.2</version>
+        </dependency>
+
+
         <!-- MySQL Driver Dependency -->
         <dependency>
             <groupId>mysql</groupId>
