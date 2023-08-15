@@ -6,6 +6,11 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+-  Advanced filtering in APIs using Specification
+  - **Commit**: feat: Implement advanced filters using Specification
+  - **Author**: MathSena
+  - **Date**: 15/08/2023
+
 - Implement Pageable
   - **Commit**: "Feature: Implement Paginated User Retrieval
   - **Author**: MathSena
