@@ -1,6 +1,7 @@
 package com.ead.authuser.dtos;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonView;
 import lombok.Data;
 
 import java.util.UUID;
@@ -9,14 +10,39 @@ import java.util.UUID;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserDto {
 
-    private UUID userId;
-    private String username;
-    private String email;
-    private String password;
-    private String oldPassword;
-    private String fullName;
-    private String phoneNumber;
-    private String cpf;
-    private String imageUrl;
+    // Interfaces aninhadas para diferentes visões dos dados do usuário
+    public interface UserView {
+        interface RegistrationPost {}
+        interface UserPut {}
+        interface PasswordPut {}
+        interface ImagePut {}
+    }
 
+    // Propriedades do usuário com anotações JsonView para controlar a serialização
+    private UUID userId;
+
+    @JsonView(UserView.RegistrationPost.class)
+    private String username;
+
+    @JsonView(UserView.RegistrationPost.class)
+    private String email;
+
+    @JsonView({UserView.RegistrationPost.class, UserView.PasswordPut.class})
+    private String password;
+
+    @JsonView(UserView.PasswordPut.class)
+    private String oldPassword;
+
+    @JsonView({UserView.RegistrationPost.class, UserView.UserPut.class})
+    private String fullName;
+
+    @JsonView({UserView.RegistrationPost.class, UserView.UserPut.class})
+    private String phoneNumber;
+
+    @JsonView({UserView.RegistrationPost.class, UserView.UserPut.class})
+    private String cpf;
+
+    @JsonView({UserView.ImagePut.class})
+    private String imageUrl;
 }
+
