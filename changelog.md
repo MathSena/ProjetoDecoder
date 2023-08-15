@@ -6,6 +6,17 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- Implement JSONView.
+  - **Commit**: Implement JSONView with Multiple Views in APIs
+  - **Author**: MathSena
+  - **Date**: 15/08/2023
+
+
+- Endpoints for `AuthenticationController` and added some loggings.
+  - **Commit**: Create endpoints to AuthenticationController and adding some loggings
+  - **Author**: MathSena
+  - **Date**: 14/08/2023
+
 - Endpoints for `UserController` and added some loggings.
     - **Commit**: Create endpoints to UserController and adding some loggings
     - **Author**: MathSena
