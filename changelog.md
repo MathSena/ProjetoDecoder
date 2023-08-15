@@ -33,4 +33,3 @@ All notable changes to this project will be documented in this file.
     - **Commit**: Initial commit - Adding AuthUser, Course, and Notification services and setting up the database configuration.
     - **Author**: MathSena
     - **Date**: 09/08/2023
-
