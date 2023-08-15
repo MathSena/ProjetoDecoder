@@ -6,6 +6,11 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- Hypermedia with Spring HATEOAS in getAllUsers method
+  - Commit: feat: Integrate Spring HATEOAS hypermedia in getAllUsers method
+  - Author: MathSena
+  - Date: 15/08/2023
+
 -  Advanced filtering in APIs using Specification
   - **Commit**: feat: Implement advanced filters using Specification
   - **Author**: MathSena
