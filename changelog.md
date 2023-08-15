@@ -6,6 +6,11 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- Implement Pageable
+  - **Commit**: "Feature: Implement Paginated User Retrieval
+  - **Author**: MathSena
+  - **Date**: 15/08/2023
+
 - Implement Custom Validation using @Constraint
   - **Commit**: Implement Custom Validation using @Constraint
   - **Author**: MathSena
