@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -73,7 +74,8 @@ public class UserController {
      */
     @PutMapping("/{userId}")
     public ResponseEntity<UserModel> updateUserDetails(@PathVariable(value = "userId") UUID userId,
-                                                       @JsonView(UserDto.UserView.UserPut.class) @RequestBody UserDto userDto) {
+                                                       @JsonView(UserDto.UserView.UserPut.class)
+                                                       @RequestBody @Validated(UserDto.UserView.UserPut.class) UserDto userDto) {
         Optional<UserModel> userModelOptional = userService.findById(userId);
         if (userModelOptional.isEmpty()) {
             return ResponseEntity.notFound().build();
@@ -97,7 +99,7 @@ public class UserController {
      */
     @PutMapping("/{userId}/password")
     public ResponseEntity<String> updatePassword(@PathVariable(value = "userId") UUID userId,
-                                                 @JsonView(UserDto.UserView.PasswordPut.class) @RequestBody UserDto userDto) {
+                                                 @JsonView(UserDto.UserView.PasswordPut.class) @RequestBody @Validated(UserDto.UserView.PasswordPut.class) UserDto userDto) {
         Optional<UserModel> userModelOptional = userService.findById(userId);
         if (userModelOptional.isEmpty()) {
             return ResponseEntity.notFound().build();
@@ -122,7 +124,7 @@ public class UserController {
      */
     @PutMapping("/{userId}/image")
     public ResponseEntity<UserModel> updateImage(@PathVariable(value = "userId") UUID userId,
-                                                 @JsonView(UserDto.UserView.ImagePut.class) @RequestBody UserDto userDto) {
+                                                 @JsonView(UserDto.UserView.ImagePut.class) @RequestBody @Validated(UserDto.UserView.ImagePut.class) UserDto userDto) {
         Optional<UserModel> userModelOptional = userService.findById(userId);
         if (userModelOptional.isEmpty()) {
             return ResponseEntity.notFound().build();
