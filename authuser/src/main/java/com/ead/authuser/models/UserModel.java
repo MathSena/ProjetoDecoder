@@ -29,7 +29,7 @@ public class UserModel extends RepresentationModel<UserModel> implements Seriali
     private String username;
     @Column(nullable=false, unique = true, length = 50)
     private String email;
-    @Column(nullable=false, length = 255)
+    @Column(nullable=false, length = 250)
     @JsonIgnore
     private String password;
     @Column(nullable=false, length = 150)

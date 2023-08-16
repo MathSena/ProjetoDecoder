@@ -6,18 +6,23 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- Map Entities, create Repositories and Services for Multiple Entities
+  - **Commit**: feat: Map Entities, create Repositories and Services for Multiple Entities
+  - **Author**: MathSena
+  - **Date**: 16/08/2023
+
 - Hypermedia with Spring HATEOAS in getAllUsers method
   - Commit: feat: Integrate Spring HATEOAS hypermedia in getAllUsers method
   - Author: MathSena
   - Date: 15/08/2023
 
--  Advanced filtering in APIs using Specification
+- Advanced filtering in APIs using Specification
   - **Commit**: feat: Implement advanced filters using Specification
   - **Author**: MathSena
   - **Date**: 15/08/2023
 
 - Implement Pageable
-  - **Commit**: "Feature: Implement Paginated User Retrieval
+  - **Commit**: Feature: Implement Paginated User Retrieval
   - **Author**: MathSena
   - **Date**: 15/08/2023
 
@@ -36,23 +41,22 @@ All notable changes to this project will be documented in this file.
   - **Author**: MathSena
   - **Date**: 15/08/2023
 
-
 - Endpoints for `AuthenticationController` and added some loggings.
   - **Commit**: Create endpoints to AuthenticationController and adding some loggings
   - **Author**: MathSena
   - **Date**: 14/08/2023
 
 - Endpoints for `UserController` and added some loggings.
-    - **Commit**: Create endpoints to UserController and adding some loggings
-    - **Author**: MathSena
-    - **Date**: 10/08/2023
+  - **Commit**: Create endpoints to UserController and adding some loggings
+  - **Author**: MathSena
+  - **Date**: 10/08/2023
 
 - Mappings with Spring Data JPA and Lombok.
-    - **Commit**: Mappings with Spring Data JPA and Lombok
-    - **Author**: MathSena
-    - **Date**: 09/08/2023
+  - **Commit**: Mappings with Spring Data JPA and Lombok
+  - **Author**: MathSena
+  - **Date**: 09/08/2023
 
 - Initial commit - Added `AuthUser`, `Course`, and `Notification` services and set up the database configuration.
-    - **Commit**: Initial commit - Adding AuthUser, Course, and Notification services and setting up the database configuration.
-    - **Author**: MathSena
-    - **Date**: 09/08/2023
+  - **Commit**: Initial commit - Adding AuthUser, Course, and Notification services and setting up the database configuration.
+  - **Author**: MathSena
+  - **Date**: 09/08/2023
