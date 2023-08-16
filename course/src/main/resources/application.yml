@@ -1,15 +1,16 @@
 server:
-  port: 8087
+  port: 8082
 
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/ead_authuser
+    url: jdbc:mysql://localhost:3306/ead_course
     username: root
     password: 41494899
 
   jpa:
     hibernate:
       ddl-auto: update
+      dialect: org.hibernate.dialect.MySQL5Dialect  # Adjust as per your MySQL version
     properties:
       hibernate:
         show_sql: true
