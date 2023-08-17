@@ -6,25 +6,35 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- Implement OneToMany and ManyToOne relationship between Course and Module classes
+  - Commit: TASK-21: Implement OnetoMany and ManyToOne relationship between Course and Module
+  - Author: MathSena
+  - Date: 17/08/2023
+
+
 - Map Entities, create Repositories and Services for Multiple Entities
   - **Commit**: feat: Map Entities, create Repositories and Services for Multiple Entities
   - **Author**: MathSena
   - **Date**: 16/08/2023
+
 
 - Hypermedia with Spring HATEOAS in getAllUsers method
   - Commit: feat: Integrate Spring HATEOAS hypermedia in getAllUsers method
   - Author: MathSena
   - Date: 15/08/2023
 
+
 - Advanced filtering in APIs using Specification
   - **Commit**: feat: Implement advanced filters using Specification
   - **Author**: MathSena
   - **Date**: 15/08/2023
 
+
 - Implement Pageable
   - **Commit**: Feature: Implement Paginated User Retrieval
   - **Author**: MathSena
   - **Date**: 15/08/2023
+
 
 - Implement Custom Validation using @Constraint
   - **Commit**: Implement Custom Validation using @Constraint
@@ -36,10 +46,12 @@ All notable changes to this project will be documented in this file.
   - **Author**: MathSena
   - **Date**: 15/08/2023
 
+
 - Implement JSONView.
   - **Commit**: Implement JSONView with Multiple Views in APIs
   - **Author**: MathSena
   - **Date**: 15/08/2023
+
 
 - Endpoints for `AuthenticationController` and added some loggings.
   - **Commit**: Create endpoints to AuthenticationController and adding some loggings
@@ -51,10 +63,12 @@ All notable changes to this project will be documented in this file.
   - **Author**: MathSena
   - **Date**: 10/08/2023
 
+
 - Mappings with Spring Data JPA and Lombok.
   - **Commit**: Mappings with Spring Data JPA and Lombok
   - **Author**: MathSena
   - **Date**: 09/08/2023
+
 
 - Initial commit - Added `AuthUser`, `Course`, and `Notification` services and set up the database configuration.
   - **Commit**: Initial commit - Adding AuthUser, Course, and Notification services and setting up the database configuration.
