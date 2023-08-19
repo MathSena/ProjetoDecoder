@@ -6,6 +6,12 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- 19/08/2023 - Added FetchType, @EntityGraph, FetchMode, @Query, and @Modify to course module.
+  - Commit: Commit: feat: Add FetchType, @EntityGraph, FetchMode, @Query, and @Modify to course module
+  - Author: MathSena
+  - Date: 19/08/2023
+
+  
 - Implement OneToMany and ManyToOne relationship between Course and Module classes
   - Commit: TASK-21: Implement OnetoMany and ManyToOne relationship between Course and Module
   - Author: MathSena

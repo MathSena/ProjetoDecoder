@@ -32,11 +32,12 @@ public class ModuleModel implements Serializable {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
     private LocalDateTime creationDate;
 
-    @ManyToOne(optional = false)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private CourseModel course;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @OneToMany(mappedBy ="module")
+    @OneToMany(mappedBy ="module", fetch = FetchType.LAZY)
     private Set<LessonModel> lessons;
 
 
