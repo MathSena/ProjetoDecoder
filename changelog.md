@@ -6,6 +6,11 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- Create RESTful API for Course with Spring Validation
+  - Commit: TASK-29 - Create RESTful API for Course with Spring Validation
+  - Author: MathSena
+  - Date: 19/08/2023
+
 - Implement CascadeType.ALL or custom deletion method for relationships
   - Commit: TASK-25 - Implement CascadeType.ALL or custom deletion method for relationships
   - Author: MathSena

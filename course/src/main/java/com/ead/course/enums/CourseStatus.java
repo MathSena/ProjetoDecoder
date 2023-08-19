@@ -1,5 +1,6 @@
 package com.ead.course.enums;
 
 public enum CourseStatus {
-    IN_PROGESS, COMPLETED
+
+    NOT_BEGGING, IN_PROGESS, COMPLETED
 }
