@@ -4,6 +4,7 @@ import com.ead.course.dtos.CourseDto;
 import com.ead.course.models.CourseModel;
 import com.ead.course.services.CourseService;
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,8 +16,7 @@ import java.time.ZoneId;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 
 /**
  * This controller provides CRUD operations for Course entities.
@@ -24,13 +24,11 @@ import org.slf4j.LoggerFactory;
 @RestController
 @RequestMapping("/courses")
 @CrossOrigin(origins = "*", maxAge = 3600)
+@Slf4j
 public class CourseController {
-
 
     @Autowired
     CourseService courseService;
-
-    private static final Logger logger = LoggerFactory.getLogger(CourseController.class);
 
     private static final String COURSE_NOT_FOUND_MSG = "Course with ID {} not found.";
 
@@ -48,7 +46,7 @@ public class CourseController {
         courseModel.setCreatedDate(LocalDateTime.now(ZoneId.of("UTC")));
         courseModel.setLastModifiedDate(LocalDateTime.now(ZoneId.of("UTC")));
 
-        logger.info("Saving a new course.");
+        log.info("Saving a new course.");
         return ResponseEntity.status(HttpStatus.CREATED).body(courseService.save(courseModel));
     }
 
@@ -63,12 +61,12 @@ public class CourseController {
         Optional<CourseModel> courseModelOptional = courseService.findById(courseId);
 
         if (courseModelOptional.isEmpty()) {
-            logger.warn(COURSE_NOT_FOUND_MSG, courseId);
+            log.warn(COURSE_NOT_FOUND_MSG, courseId);
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(COURSE_NOT_FOUND_MSG);
         }
 
         courseService.delete(courseModelOptional.get());
-        logger.info("Course with ID {} deleted.", courseId);
+        log.info("Course with ID {} deleted.", courseId);
         return ResponseEntity.status(HttpStatus.OK).body("Course deleted");
     }
 
@@ -84,7 +82,7 @@ public class CourseController {
         Optional<CourseModel> courseModelOptional = courseService.findById(courseId);
 
         if (courseModelOptional.isEmpty()) {
-            logger.warn(COURSE_NOT_FOUND_MSG, courseId);
+            log.warn(COURSE_NOT_FOUND_MSG, courseId);
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(COURSE_NOT_FOUND_MSG);
         }
 
@@ -96,7 +94,7 @@ public class CourseController {
         courseModel.setCourseLevel(courseDto.getCourseLevel());
         courseModel.setLastModifiedDate(LocalDateTime.now(ZoneId.of("UTC")));
 
-        logger.info("Updating course with ID {}.", courseId);
+        log.info("Updating course with ID {}.", courseId);
         return ResponseEntity.status(HttpStatus.OK).body(courseService.save(courseModel));
     }
 
@@ -107,7 +105,7 @@ public class CourseController {
      */
     @GetMapping
     public ResponseEntity<List<CourseModel>> getAllCourses() {
-        logger.info("Fetching all courses.");
+        log.info("Fetching all courses.");
         return ResponseEntity.status(HttpStatus.OK).body(courseService.findAll());
     }
 
@@ -122,11 +120,11 @@ public class CourseController {
         Optional<CourseModel> courseModelOptional = courseService.findById(courseId);
 
         if (courseModelOptional.isEmpty()) {
-            logger.warn(COURSE_NOT_FOUND_MSG, courseId);
+            log.warn(COURSE_NOT_FOUND_MSG, courseId);
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(COURSE_NOT_FOUND_MSG);
         }
 
-        logger.info("Fetching course with ID {}.", courseId);
+        log.info("Fetching course with ID {}.", courseId);
         return ResponseEntity.status(HttpStatus.OK).body(courseModelOptional.get());
     }
 
