@@ -3,17 +3,21 @@ package com.ead.course.controllers;
 import com.ead.course.dtos.CourseDto;
 import com.ead.course.models.CourseModel;
 import com.ead.course.services.CourseService;
+import com.ead.course.specifications.SpecificationTemplate;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -73,7 +77,7 @@ public class CourseController {
     /**
      * Update an existing course.
      *
-     * @param courseId The ID of the course to update.
+     * @param courseId  The ID of the course to update.
      * @param courseDto The updated course data.
      * @return Response entity with updated course data.
      */
@@ -104,9 +108,10 @@ public class CourseController {
      * @return Response entity with a list of all courses.
      */
     @GetMapping
-    public ResponseEntity<List<CourseModel>> getAllCourses() {
+    public ResponseEntity<Page<CourseModel>> getAllCourses(SpecificationTemplate.CourseSpec spec,
+                                                           @PageableDefault(page=0, size=10, sort="courseId", direction= Sort.Direction.ASC) Pageable pageable) {
         log.info("Fetching all courses.");
-        return ResponseEntity.status(HttpStatus.OK).body(courseService.findAll());
+        return ResponseEntity.status(HttpStatus.OK).body(courseService.findAll(spec, pageable));
     }
 
     /**

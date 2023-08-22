@@ -39,14 +39,12 @@ public class ModuleController {
     /**
      * Saves a module for a course.
      *
-     * @param courseId The ID of the course.
+     * @param courseId  The ID of the course.
      * @param moduleDto The details of the module to be saved.
      * @return A ResponseEntity with details of the result.
      */
     @PostMapping("/courses/{courseId}/modules")
-    public ResponseEntity<Object> saveModule(
-            @PathVariable UUID courseId,
-            @RequestBody @Valid ModuleDto moduleDto) {
+    public ResponseEntity<Object> saveModule(@PathVariable UUID courseId, @RequestBody @Valid ModuleDto moduleDto) {
 
         log.info("Attempting to save a module for course with ID: {}", courseId);
 
@@ -72,9 +70,7 @@ public class ModuleController {
      * @return A ResponseEntity with details of the result.
      */
     @DeleteMapping("/courses/{courseId}/modules/{moduleId}")
-    public ResponseEntity<Object> deleteModule(
-            @PathVariable UUID courseId,
-            @PathVariable UUID moduleId) {
+    public ResponseEntity<Object> deleteModule(@PathVariable UUID courseId, @PathVariable UUID moduleId) {
 
         log.info("Attempting to delete module with ID: {} from course with ID: {}", moduleId, courseId);
 
@@ -97,10 +93,7 @@ public class ModuleController {
      * @return A list of modules for the course.
      */
     @GetMapping("/courses/{courseId}/modules")
-    public ResponseEntity<List<ModuleModel>> getAllModules(
-            @PathVariable UUID courseId,
-            @PageableDefault(page = 0, size = 10, sort = "moduleId", direction = Sort.Direction.ASC) Pageable pageable) {
-
+    public ResponseEntity<List<ModuleModel>> getAllModules(@PathVariable UUID courseId, @PageableDefault(page = 0, size = 10, sort = "moduleId", direction = Sort.Direction.ASC) Pageable pageable) {
         log.info("Fetching all modules for course with ID: {}", courseId);
         return ResponseEntity.status(HttpStatus.OK).body(moduleService.findAllByCourseId(courseId));
     }
@@ -113,9 +106,7 @@ public class ModuleController {
      * @return Details of the module or an error message.
      */
     @GetMapping("/courses/{courseId}/modules/{moduleId}")
-    public ResponseEntity<Object> getOneModule(
-            @PathVariable UUID courseId,
-            @PathVariable UUID moduleId) {
+    public ResponseEntity<Object> getOneModule(@PathVariable UUID courseId, @PathVariable UUID moduleId) {
 
         log.info("Fetching details for module with ID: {} for course with ID: {}", moduleId, courseId);
 

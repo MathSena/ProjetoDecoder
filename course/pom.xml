@@ -22,6 +22,7 @@
     <properties>
         <java.version>17</java.version>
         <mysql.connector.version>8.0.28</mysql.connector.version>
+        <specification.arg.resolver.version>3.0.1</specification.arg.resolver.version>
     </properties>
 
     <!-- Dependencies -->
@@ -51,6 +52,12 @@
         <dependency>
             <groupId>org.springframework.hateoas</groupId>
             <artifactId>spring-hateoas</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>net.kaczmarzyk</groupId>
+            <artifactId>specification-arg-resolver</artifactId>
+            <version>${specification.arg.resolver.version}</version>
         </dependency>
 
         <!-- Lombok for reducing boilerplate code -->
