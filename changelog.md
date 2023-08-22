@@ -6,6 +6,11 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- Best Practices for Dates in APIs using Standard ISO 8601 UTC
+  - Commit: TASK-28 - Best Practices for Dates in APIs using Standard ISO 8601 UTC  - Author: MathSena
+  - Author: MathSena
+  - Date: 22/08/2023
+
 - Advanced Filters in APIs with Specification and Pageable
   - Commit: TASK-25 - Advanced Filters in APIs with Specification and Pageable
   - Author: MathSena
