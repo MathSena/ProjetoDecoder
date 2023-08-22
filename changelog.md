@@ -6,6 +6,11 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- Advanced Filters in APIs with Specification and Pageable
+  - Commit: TASK-25 - Advanced Filters in APIs with Specification and Pageable
+  - Author: MathSena
+  - Date: 22/08/2023
+
 - Create RESTful API for Module and Lessons with Spring Validation
   - Commit: TASK-30 - Create RESTful API for Module and Lessons with Spring Validation
   - Author: MathSena
