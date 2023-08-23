@@ -2,6 +2,9 @@ package com.ead.course.repositories;
 
 
 import com.ead.course.models.LessonModel;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -17,4 +20,6 @@ public interface LessonRepository extends JpaRepository<LessonModel, UUID> {
 
     @Query(value = "select * from tb_lessons where module_module_id = :moduleId and lesson_id = :lessonId", nativeQuery = true)
     Optional<LessonModel> findLessonIntoModule(@Param("moduleId") UUID moduleId, @Param("lessonId") UUID lessonId);
+
+    Page<LessonModel> findAll(Specification<LessonModel> spec, Pageable pageable);
 }

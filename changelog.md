@@ -6,6 +6,11 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- Source code review of the project
+  - Commit: TASK-35 - Source code review of the project
+  - Author: MathSena
+  - Date: 23/08/2023
+
 - Best Practices for Dates in APIs using Standard ISO 8601 UTC
   - Commit: TASK-28 - Best Practices for Dates in APIs using Standard ISO 8601 UTC  - Author: MathSena
   - Author: MathSena

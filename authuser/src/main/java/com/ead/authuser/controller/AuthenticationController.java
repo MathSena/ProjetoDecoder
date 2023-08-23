@@ -7,6 +7,7 @@ import com.ead.authuser.enums.UserType;
 import com.ead.authuser.models.UserModel;
 import com.ead.authuser.services.UserService;
 import com.fasterxml.jackson.annotation.JsonView;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,6 +21,7 @@ import java.time.ZoneId;
 @RestController
 @CrossOrigin(origins="*", maxAge=3600)
 @RequestMapping("/auth")
+@Slf4j
 public class AuthenticationController {
 
     private final UserService userService;
@@ -47,18 +49,19 @@ public class AuthenticationController {
     @PostMapping("/signup")
     public ResponseEntity<Object> registerUser(@RequestBody
             @JsonView(UserDto.UserView.RegistrationPost.class) @Validated(UserDto.UserView.RegistrationPost.class) UserDto userDto) {
-
+        log.debug("Received signup request for user: {}", userDto.getUsername());
         if (userService.existsByUserName(userDto.getUsername())) {
+            log.warn("Signup failed for username: {}. Reason: Username already exists", userDto.getUsername());
             return new ResponseEntity<>("Error: Username is already taken!", HttpStatus.CONFLICT);
         }
-
         if (userService.existsByEmail(userDto.getEmail())) {
+            log.warn("Signup failed for email: {}. Reason: Email already in use", userDto.getEmail());
             return new ResponseEntity<>("Error: Email is already in use!", HttpStatus.CONFLICT);
         }
-
         UserModel userModel = convertDtoToModel(userDto);
+        log.debug("Saving userModel for username: {}", userModel.getUsername());
         userService.save(userModel);
-
+        log.info("User registered successfully with username: {}", userModel.getUsername());
         return new ResponseEntity<>(userModel, HttpStatus.CREATED);
     }
 

@@ -30,12 +30,9 @@ import java.util.UUID;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @Slf4j
 public class CourseController {
-
     @Autowired
     CourseService courseService;
-
     private static final String COURSE_NOT_FOUND_MSG = "Course with ID {} not found.";
-
 
     /**
      * Save a new course.
@@ -49,7 +46,6 @@ public class CourseController {
         BeanUtils.copyProperties(courseDto, courseModel);
         courseModel.setCreatedDate(LocalDateTime.now(ZoneId.of("UTC")));
         courseModel.setLastModifiedDate(LocalDateTime.now(ZoneId.of("UTC")));
-
         log.info("Saving a new course.");
         return ResponseEntity.status(HttpStatus.CREATED).body(courseService.save(courseModel));
     }
@@ -63,12 +59,10 @@ public class CourseController {
     @DeleteMapping("/{courseId}")
     public ResponseEntity<Object> deleteCourse(@PathVariable(value = "courseId") UUID courseId) {
         Optional<CourseModel> courseModelOptional = courseService.findById(courseId);
-
         if (courseModelOptional.isEmpty()) {
             log.warn(COURSE_NOT_FOUND_MSG, courseId);
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(COURSE_NOT_FOUND_MSG);
         }
-
         courseService.delete(courseModelOptional.get());
         log.info("Course with ID {} deleted.", courseId);
         return ResponseEntity.status(HttpStatus.OK).body("Course deleted");
@@ -84,12 +78,10 @@ public class CourseController {
     @PutMapping("/{courseId}")
     public ResponseEntity<Object> updateCourse(@PathVariable(value = "courseId") UUID courseId, @RequestBody @Valid CourseDto courseDto) {
         Optional<CourseModel> courseModelOptional = courseService.findById(courseId);
-
         if (courseModelOptional.isEmpty()) {
             log.warn(COURSE_NOT_FOUND_MSG, courseId);
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(COURSE_NOT_FOUND_MSG);
         }
-
         var courseModel = courseModelOptional.get();
         courseModel.setName(courseDto.getName());
         courseModel.setDescription(courseDto.getDescription());
@@ -97,7 +89,6 @@ public class CourseController {
         courseModel.setCourseStatus(courseDto.getCourseStatus());
         courseModel.setCourseLevel(courseDto.getCourseLevel());
         courseModel.setLastModifiedDate(LocalDateTime.now(ZoneId.of("UTC")));
-
         log.info("Updating course with ID {}.", courseId);
         return ResponseEntity.status(HttpStatus.OK).body(courseService.save(courseModel));
     }
@@ -108,8 +99,7 @@ public class CourseController {
      * @return Response entity with a list of all courses.
      */
     @GetMapping
-    public ResponseEntity<Page<CourseModel>> getAllCourses(SpecificationTemplate.CourseSpec spec,
-                                                           @PageableDefault(page=0, size=10, sort="courseId", direction= Sort.Direction.ASC) Pageable pageable) {
+    public ResponseEntity<Page<CourseModel>> getAllCourses(SpecificationTemplate.CourseSpec spec, @PageableDefault(page = 0, size = 10, sort = "courseId", direction = Sort.Direction.ASC) Pageable pageable) {
         log.info("Fetching all courses.");
         return ResponseEntity.status(HttpStatus.OK).body(courseService.findAll(spec, pageable));
     }
@@ -123,14 +113,11 @@ public class CourseController {
     @GetMapping("/{courseId}")
     public ResponseEntity<Object> getOneCourse(@PathVariable(value = "courseId") UUID courseId) {
         Optional<CourseModel> courseModelOptional = courseService.findById(courseId);
-
         if (courseModelOptional.isEmpty()) {
             log.warn(COURSE_NOT_FOUND_MSG, courseId);
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(COURSE_NOT_FOUND_MSG);
         }
-
         log.info("Fetching course with ID {}.", courseId);
         return ResponseEntity.status(HttpStatus.OK).body(courseModelOptional.get());
     }
-
 }

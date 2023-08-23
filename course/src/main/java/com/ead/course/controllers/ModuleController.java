@@ -6,10 +6,12 @@ import com.ead.course.models.CourseModel;
 import com.ead.course.models.ModuleModel;
 import com.ead.course.services.CourseService;
 import com.ead.course.services.ModuleService;
+import com.ead.course.specifications.SpecificationTemplate;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -93,9 +95,11 @@ public class ModuleController {
      * @return A list of modules for the course.
      */
     @GetMapping("/courses/{courseId}/modules")
-    public ResponseEntity<List<ModuleModel>> getAllModules(@PathVariable UUID courseId, @PageableDefault(page = 0, size = 10, sort = "moduleId", direction = Sort.Direction.ASC) Pageable pageable) {
+    public ResponseEntity<Page<ModuleModel>> getAllModules(@PathVariable(value="courseId") UUID courseId,
+                                                           SpecificationTemplate.ModuleSpec spec,
+                                                           @PageableDefault(page = 0, size = 10, sort = "moduleId", direction = Sort.Direction.ASC) Pageable pageable){
         log.info("Fetching all modules for course with ID: {}", courseId);
-        return ResponseEntity.status(HttpStatus.OK).body(moduleService.findAllByCourseId(courseId));
+        return ResponseEntity.status(HttpStatus.OK).body(moduleService.findAllByCourse(SpecificationTemplate.moduleCourseId(courseId).and(spec), pageable));
     }
 
     /**
@@ -107,15 +111,12 @@ public class ModuleController {
      */
     @GetMapping("/courses/{courseId}/modules/{moduleId}")
     public ResponseEntity<Object> getOneModule(@PathVariable UUID courseId, @PathVariable UUID moduleId) {
-
         log.info("Fetching details for module with ID: {} for course with ID: {}", moduleId, courseId);
-
         Optional<ModuleModel> moduleModelOptional = moduleService.findModuleIntoCourse(courseId, moduleId);
         if (moduleModelOptional.isEmpty()) {
             log.warn(MODULE_NOT_FOUND_MSG, moduleId);
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Module not found for this course.");
         }
-
         return ResponseEntity.status(HttpStatus.OK).body(moduleModelOptional.get());
     }
 
