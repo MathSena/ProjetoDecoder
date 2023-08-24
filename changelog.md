@@ -6,6 +6,12 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- Map relationships for microservices communication
+  - Commit: TASK-39 - Map relationships for microservices communication
+  - Author: MathSena
+  - Date: 24/08/2023
+
+
 - Source code review of the project
   - Commit: TASK-35 - Source code review of the project
   - Author: MathSena
