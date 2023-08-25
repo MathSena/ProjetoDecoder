@@ -6,11 +6,15 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- API Composition Pattern - preparing GetAll methods
+  - Commit: TASK-46 - API Composition Pattern - preparing GetAll methods
+  - Author: MathSena
+  - Date: 25/08/2023
+
 - Map relationships for microservices communication
   - Commit: TASK-39 - Map relationships for microservices communication
   - Author: MathSena
   - Date: 24/08/2023
-
 
 - Source code review of the project
   - Commit: TASK-35 - Source code review of the project
