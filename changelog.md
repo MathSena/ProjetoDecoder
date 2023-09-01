@@ -6,6 +6,11 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- API Composition Pattern in Authuser Microservice 
+  - Commit: TASK-44 - API Composition Pattern in Authuser Microservice
+  - Author: MathSena
+  - Date: 01/09/2023
+- 
 - API Composition Pattern - preparing GetAll methods
   - Commit: TASK-46 - API Composition Pattern - preparing GetAll methods
   - Author: MathSena
