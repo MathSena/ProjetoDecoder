@@ -49,11 +49,10 @@
 
         <!-- MySQL JDBC Connector -->
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>${mysql.connector.version}</version>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <scope>runtime</scope>
         </dependency>
-
         <!-- Specification Arg Resolver -->
         <dependency>
             <groupId>net.kaczmarzyk</groupId>
