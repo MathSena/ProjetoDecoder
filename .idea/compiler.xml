@@ -12,11 +12,6 @@
         <module name="authuser" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="authuser" target="17" />
-      <module name="course" target="17" />
-      <module name="notification" target="17" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
