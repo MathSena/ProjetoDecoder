@@ -1,7 +1,3 @@
 package com.ead.authuser.services;
 
-
-
-public interface UserCourseService{
-
-}
+public interface UserCourseService {}

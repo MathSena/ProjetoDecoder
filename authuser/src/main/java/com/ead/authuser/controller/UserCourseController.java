@@ -15,30 +15,20 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
-
 @RestController
-@CrossOrigin(origins="*", maxAge=3600)
+@CrossOrigin(origins = "*", maxAge = 3600)
 @Slf4j
 public class UserCourseController {
 
-    @Autowired
-    UserClient userClient;
+  @Autowired UserClient userClient;
 
+  @GetMapping("/users/{userId}/courses")
+  public ResponseEntity<Page<CourseDto>> getAllCoursesByUser(
+      SpecificationTemplate.UserSpec spec,
+      @PageableDefault(sort = "courseId", direction = Sort.Direction.ASC) Pageable pageable,
+      @PathVariable(value = "userId") UUID userId) {
 
-    @GetMapping("/users/{userId}/courses")
-    public ResponseEntity<Page<CourseDto>> getAllCoursesByUser(SpecificationTemplate.UserSpec spec,
-                                                               @PageableDefault(sort = "courseId", direction = Sort.Direction.ASC)
-                                                       Pageable pageable, @PathVariable(value = "userId") UUID userId) {
-
-
-        return ResponseEntity.status(HttpStatus.OK).body(userClient.getAllCoursesByUser(userId, pageable));
-    }
-
-
-
-
-
-
-
-
+    return ResponseEntity.status(HttpStatus.OK)
+        .body(userClient.getAllCoursesByUser(userId, pageable));
+  }
 }

@@ -22,33 +22,29 @@ import java.util.UUID;
 @Component
 public class UserClient {
 
-    @Autowired
-    RestTemplate restTemplate;
+  @Autowired RestTemplate restTemplate;
 
-    @Autowired
-    UtilsService utilsService;
+  @Autowired UtilsService utilsService;
 
+  public Page<CourseDto> getAllCoursesByUser(UUID userId, Pageable pageable) {
+    List<CourseDto> searchResults = null;
 
-    public Page<CourseDto> getAllCoursesByUser(UUID userId, Pageable pageable){
-        List<CourseDto> searchResults = null;
+    String url = utilsService.createUrl(userId, pageable);
 
-        String url = utilsService.createUrl(userId, pageable);
+    log.debug("Request URL {}: ", url);
+    log.info("Request URL {}: ", url);
+    try {
+      ParameterizedTypeReference<ResponsePageDto<CourseDto>> responseType =
+          new ParameterizedTypeReference<ResponsePageDto<CourseDto>>() {};
+      ResponseEntity<ResponsePageDto<CourseDto>> result =
+          restTemplate.exchange(url, HttpMethod.GET, null, responseType);
+      searchResults = result.getBody().getContent();
+      log.debug("Response Number of elements: {}", searchResults.size());
 
-        log.debug("Request URL {}: ", url);
-        log.info("Request URL {}: ", url);
-        try{
-            ParameterizedTypeReference<ResponsePageDto<CourseDto>> responseType =new ParameterizedTypeReference<ResponsePageDto<CourseDto>>() {};
-            ResponseEntity<ResponsePageDto<CourseDto>> result = restTemplate.exchange(url, HttpMethod.GET, null, responseType);
-            searchResults = result.getBody().getContent();
-            log.debug("Response Number of elements: {}", searchResults.size());
-
-
-        }catch (HttpStatusCodeException e){
-            log.error("Error request/courses:{}", e);
-
-        }
-        log.info("Ending request /courses userId: {}", userId);
-        return new PageImpl<>(searchResults);
+    } catch (HttpStatusCodeException e) {
+      log.error("Error request/courses:{}", e);
     }
-
+    log.info("Ending request /courses userId: {}", userId);
+    return new PageImpl<>(searchResults);
+  }
 }

@@ -9,21 +9,19 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-
 public interface UserService {
 
+  List<UserModel> findAll();
 
-    List<UserModel> findAll();
+  Optional<UserModel> findById(UUID userId);
 
-    Optional<UserModel> findById(UUID userId);
+  void delete(UserModel userModel);
 
-    void delete(UserModel userModel);
+  void save(UserModel userModel);
 
-    void save(UserModel userModel);
+  boolean existsByUserName(String username);
 
-    boolean existsByUserName(String username);
+  boolean existsByEmail(String email);
 
-    boolean existsByEmail(String email);
-
-    Page<UserModel> findAll(Specification<UserModel> spec, Pageable pageable);
+  Page<UserModel> findAll(Specification<UserModel> spec, Pageable pageable);
 }

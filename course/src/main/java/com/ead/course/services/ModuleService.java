@@ -11,15 +11,15 @@ import java.util.UUID;
 
 public interface ModuleService {
 
-    void delete(ModuleModel moduleModel);
+  void delete(ModuleModel moduleModel);
 
-    ModuleModel save(ModuleModel moduleModel);
+  ModuleModel save(ModuleModel moduleModel);
 
-    Optional<ModuleModel> findModuleIntoCourse(UUID courseId, UUID moduleId);
+  Optional<ModuleModel> findModuleIntoCourse(UUID courseId, UUID moduleId);
 
-    List<ModuleModel> findAllByCourseId(UUID courseId);
+  List<ModuleModel> findAllByCourseId(UUID courseId);
 
-    Optional<ModuleModel> findById(UUID moduleId);
+  Optional<ModuleModel> findById(UUID moduleId);
 
-    Page<ModuleModel> findAllByCourse(Specification<ModuleModel> spec, Pageable pageable);
+  Page<ModuleModel> findAllByCourse(Specification<ModuleModel> spec, Pageable pageable);
 }

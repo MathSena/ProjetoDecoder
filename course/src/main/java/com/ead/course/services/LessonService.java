@@ -10,13 +10,13 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface LessonService {
-    LessonModel save(LessonModel lessonModel);
+  LessonModel save(LessonModel lessonModel);
 
-    Optional<LessonModel> findLessonIntoModule(UUID moduleId, UUID lessonId);
+  Optional<LessonModel> findLessonIntoModule(UUID moduleId, UUID lessonId);
 
-    void delete(LessonModel lessonModel);
+  void delete(LessonModel lessonModel);
 
-    List<LessonModel> findAllByModule(UUID moduleId);
+  List<LessonModel> findAllByModule(UUID moduleId);
 
-    Page<LessonModel> findAllByModule(Specification<LessonModel> spec, Pageable pageable);
+  Page<LessonModel> findAllByModule(Specification<LessonModel> spec, Pageable pageable);
 }

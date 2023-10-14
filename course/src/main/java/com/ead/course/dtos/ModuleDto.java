@@ -6,8 +6,6 @@ import lombok.Data;
 @Data
 public class ModuleDto {
 
-    @NotBlank
-    private String title;
-    @NotBlank
-    private String description;
+  @NotBlank private String title;
+  @NotBlank private String description;
 }
