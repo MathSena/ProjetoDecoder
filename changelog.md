@@ -4,7 +4,15 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
-### Added
+- refactor: refactoring AuthUser
+  - Commit: refactor: refactoring AuthUser
+  - Author: MathSena
+  - Date: 13/11/2023
+
+- API Composition Pattern in Authuser Microservice
+  - Commit: TASK 42 - API Composition Pattern em Course Microservice
+  - Author: MathSena
+  - Date: 14/10/2023
 
 - API Composition Pattern in Authuser Microservice 
   - Commit: TASK-44 - API Composition Pattern in Authuser Microservice

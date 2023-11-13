@@ -73,8 +73,18 @@ public class AuthenticationController {
     userModel.setUserStatus(UserStatus.ACTIVE);
     userModel.setUserType(UserType.STUDENT);
     LocalDateTime currentUtcTime = LocalDateTime.now(ZoneId.of("UTC"));
-    userModel.setCreatedDate(currentUtcTime);
+    userModel.setCreationDate(currentUtcTime);
     userModel.setLastUpdateDate(currentUtcTime);
     return userModel;
+  }
+
+  @GetMapping("/")
+  public String index() {
+    log.trace("TRACE");
+    log.debug("DEBUG");
+    log.info("INFO");
+    log.warn("WARN");
+    log.error("ERROR");
+    return "Logging Spring Boot...";
   }
 }
