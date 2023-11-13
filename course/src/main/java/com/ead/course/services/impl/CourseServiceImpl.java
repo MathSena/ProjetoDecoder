@@ -1,9 +1,11 @@
 package com.ead.course.services.impl;
 
 import com.ead.course.models.CourseModel;
+import com.ead.course.models.CourseUserModel;
 import com.ead.course.models.LessonModel;
 import com.ead.course.models.ModuleModel;
 import com.ead.course.repositories.CourseRepository;
+import com.ead.course.repositories.CourseUserRepository;
 import com.ead.course.repositories.LessonRepository;
 import com.ead.course.repositories.ModuleRepository;
 import com.ead.course.services.CourseService;
@@ -18,80 +20,53 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 
 @Service
 public class CourseServiceImpl implements CourseService {
 
-    private static final Logger logger = LoggerFactory.getLogger(CourseServiceImpl.class);
+  @Autowired CourseRepository courseRepository;
 
-    private final CourseRepository courseRepository;
-    private final ModuleRepository moduleRepository;
-    private final LessonRepository lessonRepository;
+  @Autowired ModuleRepository moduleRepository;
 
-    @Autowired
-    public CourseServiceImpl(CourseRepository courseRepository,
-                             ModuleRepository moduleRepository,
-                             LessonRepository lessonRepository) {
-        this.courseRepository = courseRepository;
-        this.moduleRepository = moduleRepository;
-        this.lessonRepository = lessonRepository;
-    }
+  @Autowired LessonRepository lessonRepository;
 
-    @Transactional
-    @Override
-    public void delete(CourseModel courseModel) {
-        UUID courseId = courseModel.getCourseId();
-        logger.info("Initiating deletion for course with ID: {}", courseId);
+  @Autowired CourseUserRepository courseUserRepository;
 
-        List<ModuleModel> moduleModelList = moduleRepository.findAllModulesIntoCourse(courseId);
-
-        for (ModuleModel moduleModel : moduleModelList) {
-            UUID moduleId = moduleModel.getModuleId();
-            List<LessonModel> lessonModelList = lessonRepository.findAllLessonsIntoModule(moduleId);
-
-            if (!lessonModelList.isEmpty()) {
-                logger.debug("Found {} lessons related to module {}. Deleting them.", lessonModelList.size(), moduleId);
-                lessonRepository.deleteAll(lessonModelList);
-            }
+  @Transactional
+  @Override
+  public void delete(CourseModel courseModel) {
+    List<ModuleModel> moduleModelList =
+        moduleRepository.findAllLModulesIntoCourse(courseModel.getCourseId());
+    if (!moduleModelList.isEmpty()) {
+      for (ModuleModel module : moduleModelList) {
+        List<LessonModel> lessonModelList =
+            lessonRepository.findAllLessonsIntoModule(module.getModuleId());
+        if (!lessonModelList.isEmpty()) {
+          lessonRepository.deleteAll(lessonModelList);
         }
-
-        if (!moduleModelList.isEmpty()) {
-            logger.debug("Deleting {} modules related to course {}", moduleModelList.size(), courseId);
-            moduleRepository.deleteAll(moduleModelList);
-        }
-
-        logger.debug("Deleting course with ID: {}", courseId);
-        courseRepository.delete(courseModel);
-        logger.info("Deletion completed for course with ID: {}", courseId);
+      }
+      moduleRepository.deleteAll(moduleModelList);
     }
-
-    @Override
-    public CourseModel save(CourseModel courseModel) {
-        UUID courseId = courseModel.getCourseId();
-
-        if (courseId == null) {
-            logger.info("Initiating saving of a new course.");
-        } else {
-            logger.info("Initiating update for course with ID: {}", courseId);
-        }
-
-        CourseModel savedCourse = courseRepository.save(courseModel);
-        logger.info("Course saved with ID: {}", savedCourse.getCourseId());
-        return savedCourse;
+    List<CourseUserModel> courseUserModelList =
+        courseUserRepository.findAllCourseUserIntoCourse(courseModel.getCourseId());
+    if (!courseUserModelList.isEmpty()) {
+      courseUserRepository.deleteAll(courseUserModelList);
     }
+    courseRepository.delete(courseModel);
+  }
 
-    @Override
-    public Optional<CourseModel> findById(UUID courseId) {
-        logger.debug("Fetching course with ID: {}", courseId);
-        return courseRepository.findById(courseId);
-    }
+  @Override
+  public CourseModel save(CourseModel courseModel) {
+    return courseRepository.save(courseModel);
+  }
 
-    @Override
-    public Page<CourseModel> findAll(Specification<CourseModel> spec, Pageable pageable) {
-        logger.debug("Fetching all courses.");
-        return courseRepository.findAll(spec, pageable);
-    }
+  @Override
+  public Optional<CourseModel> findById(UUID courseId) {
+    return courseRepository.findById(courseId);
+  }
+
+  @Override
+  public Page<CourseModel> findAll(Specification<CourseModel> spec, Pageable pageable) {
+    return courseRepository.findAll(spec, pageable);
+  }
 }

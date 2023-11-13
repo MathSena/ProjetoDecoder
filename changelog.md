@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+- refactor: refactoring CourseService
+  - Commit: refactor: refactoring CourseService
+  - Author: MathSena
+  - Date: 13/11/2023
+
 - refactor: refactoring AuthUser
   - Commit: refactor: refactoring AuthUser
   - Author: MathSena

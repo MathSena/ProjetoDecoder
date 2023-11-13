@@ -14,8 +14,8 @@ import java.util.UUID;
 
 public interface ModuleRepository extends JpaRepository<ModuleModel, UUID> {
 
-  @Query(value = "select * from tb_modules where course_course_id = :courseId", nativeQuery = true)
-  List<ModuleModel> findAllModulesIntoCourse(@Param("courseId") UUID courseId);
+  @Query(value="select * from tb_modules where course_course_id = :courseId", nativeQuery = true)
+  List<ModuleModel> findAllLModulesIntoCourse(@Param("courseId") UUID courseId);
 
   @Query(
       value =
@@ -25,4 +25,6 @@ public interface ModuleRepository extends JpaRepository<ModuleModel, UUID> {
       @Param("courseId") UUID courseId, @Param("moduleId") UUID moduleId);
 
   Page<ModuleModel> findAll(Specification<ModuleModel> spec, Pageable pageable);
+
+
 }
