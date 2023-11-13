@@ -21,7 +21,8 @@ import java.util.UUID;
 @Entity
 @Table(name = "TB_USERS")
 public class UserModel extends RepresentationModel<UserModel> implements Serializable {
-  @Serial private static final long serialVersionUID = 1L;
+  @Serial
+  private static final long serialVersionUID = 1L;
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
@@ -33,7 +34,7 @@ public class UserModel extends RepresentationModel<UserModel> implements Seriali
   @Column(nullable = false, unique = true, length = 50)
   private String email;
 
-  @Column(nullable = false, length = 250)
+  @Column(nullable = false, length = 255)
   @JsonIgnore
   private String password;
 
@@ -58,7 +59,7 @@ public class UserModel extends RepresentationModel<UserModel> implements Seriali
 
   @Column(nullable = false)
   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'")
-  private LocalDateTime createdDate;
+  private LocalDateTime creationDate;
 
   @Column(nullable = false)
   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'")
@@ -67,4 +68,8 @@ public class UserModel extends RepresentationModel<UserModel> implements Seriali
   @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
   @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
   private Set<UserCourseModel> usersCourses;
+
+  public UserCourseModel convertToUserCourseModel(UUID courseId) {
+    return new UserCourseModel(null, courseId, this);
+  }
 }

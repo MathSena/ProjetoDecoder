@@ -26,10 +26,10 @@ public class CourseUserController {
 
   @GetMapping("/courses/{courseId}/users")
   public ResponseEntity<Page<UserDto>> getAllUsersByCourse(
-      @PageableDefault(sort = "userId", direction = Sort.Direction.ASC) Pageable pageable,
+      @PageableDefault(page = 0, size = 10, sort = "userId", direction = Sort.Direction.ASC)
+          Pageable pageable,
       @PathVariable(value = "courseId") UUID courseId) {
-
     return ResponseEntity.status(HttpStatus.OK)
-        .body(courseClient.getAllUsersByCouse(courseId, pageable));
+        .body(courseClient.getAllUsersByCourse(courseId, pageable));
   }
 }
