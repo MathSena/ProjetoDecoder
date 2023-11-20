@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+- feat: Eureka Clients in Microservices Clients
+  - Commit: Eureka Clients in Microservices Clients
+  - Author: MathSena
+  - Date: 20/11/2023
 
 - feat: Creating Service Registry with Spring Cloud Netflix Eureka
   - Commit: Creating Service Registry with Spring Cloud Netflix Eureka

@@ -75,3 +75,13 @@ E
 service-registry/mvnw,7/e/7ee26a7dc89f9049b6d2c10fe2c483b71291e712
 I
 service-registry/mvnw.cmd,c/1/c100b809da0c9af05c9b21349dd5042f45c134fa
+@
+authuser/pom.xml,0/d/0d161aa83d8626219e98b501397b16dbba9aa2af
+>
+course/pom.xml,f/3/f304e1be980d2d181f25492966731f93804adf3c
+p
+@authuser/src/main/java/com/ead/authuser/AuthuserApplication.java,e/d/ed0d1186e36669713d980b0d53777e60dd725b56
+j
+:course/src/main/java/com/ead/course/CourseApplication.java,5/0/5064a7fbbd1bd24d1690d5acb75876281716c9c8
+q
+Aauthuser/src/main/java/com/ead/authuser/clients/CourseClient.java,e/c/ec56180487081487320e2e3310a55021b4fb0b4a
