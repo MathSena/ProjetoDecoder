@@ -1,8 +1,6 @@
 
 9
 	README.md,8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
-m
-=course/src/main/java/com/ead/course/clients/CourseClient.java,a/7/a72bd594bca54d8c9c0ff8eaa596204d84612242
 o
 ?course/src/main/java/com/ead/course/clients/AuthUserClient.java,7/0/7065684373f05d6c47154e2c09a81ad6f89e9dcf
 n
@@ -63,3 +61,17 @@ S
 #.idea/sonarlint/issuestore/index.pb,9/f/9fe84ebb15faf917b7def6236dba604453cc61e0
 ]
 -.idea/sonarlint/securityhotspotstore/index.pb,8/8/88a9255124c95bdc913197c120a8d560edc59c8e
+†
+Vservice-registry/src/main/java/com/ead/serviceregistry/ServiceRegistryApplication.java,5/4/542a69b19928f7a676829923825f0fd218344711
+H
+service-registry/pom.xml,c/8/c838103466e7455490125db06ce61e4ea301ce49
+f
+6service-registry/.mvn/wrapper/maven-wrapper.properties,2/0/204d013d31460147b658a64f2fcadfc972062258
+‹
+[service-registry/src/test/java/com/ead/serviceregistry/ServiceRegistryApplicationTests.java,6/a/6a5df051838f4ebe481403b30a5e2a032c1f22cc
+K
+service-registry/.gitignore,3/5/35f2355e849023183ef66a811c3101c8616a2f73
+E
+service-registry/mvnw,7/e/7ee26a7dc89f9049b6d2c10fe2c483b71291e712
+I
+service-registry/mvnw.cmd,c/1/c100b809da0c9af05c9b21349dd5042f45c134fa

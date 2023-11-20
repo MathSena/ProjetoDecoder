@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+
+- feat: Creating Service Registry with Spring Cloud Netflix Eureka
+  - Commit: Creating Service Registry with Spring Cloud Netflix Eureka
+  - Author: MathSena
+  - Date: 20/11/2023
+
 - refactor: refactoring CourseService
   - Commit: refactor: refactoring CourseService
   - Author: MathSena
