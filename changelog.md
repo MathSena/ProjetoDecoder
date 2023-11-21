@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+- feat: Sync comunication with cliet-side discovery pattern
+  - Commit: feat: Sync comunication with cliet-side discovery pattern
+  - Author: MathSena
+  - Date: 20/11/2023
+
 - feat: Eureka Clients in Microservices Clients
   - Commit: Eureka Clients in Microservices Clients
   - Author: MathSena

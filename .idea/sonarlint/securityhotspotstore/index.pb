@@ -85,3 +85,9 @@ j
 :course/src/main/java/com/ead/course/CourseApplication.java,5/0/5064a7fbbd1bd24d1690d5acb75876281716c9c8
 q
 Aauthuser/src/main/java/com/ead/authuser/clients/CourseClient.java,e/c/ec56180487081487320e2e3310a55021b4fb0b4a
+
+Oauthuser/src/main/java/com/ead/authuser/services/impl/UserCouseServiceImpl.java,2/0/20f9d02730d8d25f101ce3bd1ce6f15a9e3c337f
+z
+Jauthuser/src/main/java/com/ead/authuser/services/impl/UserServiceImpl.java,2/8/284f99adbb9c55e68464e76dcf5e45e194cacaa8
+w
+Gauthuser/src/main/java/com/ead/authuser/configs/RestTemplateConfig.java,3/7/37c0d189d5c424e188cb157cee0941e139d7dc3f
