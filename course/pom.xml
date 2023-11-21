@@ -24,6 +24,7 @@
         <java.version>17</java.version>
         <mysql.connector.version>8.0.28</mysql.connector.version>
         <specification.arg.resolver.version>3.0.1</specification.arg.resolver.version>
+        <spring-cloud.version>2022.0.4</spring-cloud.version>
     </properties>
 
     <dependencies>
@@ -77,7 +78,25 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-netflix-eureka-client -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+            <version>4.0.3</version>
+        </dependency>
     </dependencies>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 
     <!-- Build Configuration -->
