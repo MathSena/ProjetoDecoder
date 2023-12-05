@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+- feat: Configure Gateway with Eureka Server and Routing
+  - Commit: feat: Configure Gateway with Eureka Server and Routing
+  - Author: MathSena
+  - Date: 05/12/2023
+
+- feat: Creating API Gateway Microservice
+  - Commit: feat: Creating API Gateway Microservice
+  - Author: MathSena
+  - Date: 05/12/2023
+
 - feat: Sync comunication with cliet-side discovery pattern
   - Commit: feat: Sync comunication with cliet-side discovery pattern
   - Author: MathSena
