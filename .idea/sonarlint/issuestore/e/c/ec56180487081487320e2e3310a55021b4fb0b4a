@@ -1,0 +1,6 @@
+
+r	java:S116"]Rename this field "REQUEST_URL_COURSE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.( â€Ş
+X
+java:S6813"BRemove this field injection and use constructor injection instead.(ÁÔ
+]
+java:S6813"BRemove this field injection and use constructor injection instead.(­‰øúúÿÿÿÿ
