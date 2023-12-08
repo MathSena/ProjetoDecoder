@@ -1,5 +1,6 @@
 package com.ead.course.services.impl;
 
+import com.ead.course.clients.AuthUserClient;
 import com.ead.course.models.CourseModel;
 import com.ead.course.models.CourseUserModel;
 import com.ead.course.models.LessonModel;
@@ -24,49 +25,58 @@ import java.util.UUID;
 @Service
 public class CourseServiceImpl implements CourseService {
 
-  @Autowired CourseRepository courseRepository;
+    @Autowired
+    CourseRepository courseRepository;
 
-  @Autowired ModuleRepository moduleRepository;
+    @Autowired
+    ModuleRepository moduleRepository;
 
-  @Autowired LessonRepository lessonRepository;
+    @Autowired
+    LessonRepository lessonRepository;
 
-  @Autowired CourseUserRepository courseUserRepository;
+    @Autowired
+    CourseUserRepository courseUserRepository;
 
-  @Transactional
-  @Override
-  public void delete(CourseModel courseModel) {
-    List<ModuleModel> moduleModelList =
-        moduleRepository.findAllLModulesIntoCourse(courseModel.getCourseId());
-    if (!moduleModelList.isEmpty()) {
-      for (ModuleModel module : moduleModelList) {
-        List<LessonModel> lessonModelList =
-            lessonRepository.findAllLessonsIntoModule(module.getModuleId());
-        if (!lessonModelList.isEmpty()) {
-          lessonRepository.deleteAll(lessonModelList);
+    @Autowired
+    AuthUserClient authUserClient;
+
+    @Transactional
+    @Override
+    public void delete(CourseModel courseModel) {
+        boolean deleteCourseUserInAuthUser = false;
+        List<ModuleModel> moduleModelList = moduleRepository.findAllLModulesIntoCourse(courseModel.getCourseId());
+        if (!moduleModelList.isEmpty()) {
+            for (ModuleModel module : moduleModelList) {
+                List<LessonModel> lessonModelList = lessonRepository.findAllLessonsIntoModule(module.getModuleId());
+                if (!lessonModelList.isEmpty()) {
+                    lessonRepository.deleteAll(lessonModelList);
+                }
+            }
+            moduleRepository.deleteAll(moduleModelList);
         }
-      }
-      moduleRepository.deleteAll(moduleModelList);
+        List<CourseUserModel> courseUserModelList = courseUserRepository.findAllCourseUserIntoCourse(courseModel.getCourseId());
+        if (!courseUserModelList.isEmpty()) {
+            courseUserRepository.deleteAll(courseUserModelList);
+            deleteCourseUserInAuthUser = true;
+        }
+        courseRepository.delete(courseModel);
+        if (deleteCourseUserInAuthUser) {
+            authUserClient.deleteCourseInAuthUser(courseModel.getCourseId());
+        }
     }
-    List<CourseUserModel> courseUserModelList =
-        courseUserRepository.findAllCourseUserIntoCourse(courseModel.getCourseId());
-    if (!courseUserModelList.isEmpty()) {
-      courseUserRepository.deleteAll(courseUserModelList);
+
+    @Override
+    public CourseModel save(CourseModel courseModel) {
+        return courseRepository.save(courseModel);
     }
-    courseRepository.delete(courseModel);
-  }
 
-  @Override
-  public CourseModel save(CourseModel courseModel) {
-    return courseRepository.save(courseModel);
-  }
+    @Override
+    public Optional<CourseModel> findById(UUID courseId) {
+        return courseRepository.findById(courseId);
+    }
 
-  @Override
-  public Optional<CourseModel> findById(UUID courseId) {
-    return courseRepository.findById(courseId);
-  }
-
-  @Override
-  public Page<CourseModel> findAll(Specification<CourseModel> spec, Pageable pageable) {
-    return courseRepository.findAll(spec, pageable);
-  }
+    @Override
+    public Page<CourseModel> findAll(Specification<CourseModel> spec, Pageable pageable) {
+        return courseRepository.findAll(spec, pageable);
+    }
 }
