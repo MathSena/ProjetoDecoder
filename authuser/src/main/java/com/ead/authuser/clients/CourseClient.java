@@ -23,34 +23,34 @@ import java.util.UUID;
 @Component
 public class CourseClient {
 
-  @Autowired RestTemplate restTemplate;
+    @Autowired
+    RestTemplate restTemplate;
 
-  @Autowired UtilsService utilsService;
+    @Autowired
+    UtilsService utilsService;
 
-  @Value("${ead.api.url.course}")
-  String REQUEST_URL_COURSE;
+    @Value("${ead.api.url.course}")
+    String REQUEST_URL_COURSE;
 
-  public Page<CourseDto> getAllCoursesByUser(UUID userId, Pageable pageable) {
-    List<CourseDto> searchResult = null;
-    ResponseEntity<ResponsePageDto<CourseDto>> result = null;
-    String url = REQUEST_URL_COURSE + utilsService.createUrl(userId, pageable);
-    log.debug("Request URL: {} ", url);
-    log.info("Request URL: {} ", url);
-    try {
-      ParameterizedTypeReference<ResponsePageDto<CourseDto>> responseType =
-          new ParameterizedTypeReference<ResponsePageDto<CourseDto>>() {};
-      result = restTemplate.exchange(url, HttpMethod.GET, null, responseType);
-      searchResult = Objects.requireNonNull(result.getBody()).getContent();
-      log.debug("Response Number of Elements: {} ", searchResult.size());
-    } catch (HttpStatusCodeException e) {
-      log.error("Error request /courses {} ", e);
+    public Page<CourseDto> getAllCoursesByUser(UUID userId, Pageable pageable) {
+        List<CourseDto> searchResult = null;
+        ResponseEntity<ResponsePageDto<CourseDto>> result = null;
+        String url = REQUEST_URL_COURSE + utilsService.createUrl(userId, pageable);
+        log.debug("Request URL: {} ", url);
+        log.info("Request URL: {} ", url);
+        try {
+            ParameterizedTypeReference<ResponsePageDto<CourseDto>> responseType =
+                    new ParameterizedTypeReference<ResponsePageDto<CourseDto>>() {
+                    };
+            result = restTemplate.exchange(url, HttpMethod.GET, null, responseType);
+            searchResult = Objects.requireNonNull(result.getBody())
+                    .getContent();
+            log.debug("Response Number of Elements: {} ", searchResult.size());
+        } catch (HttpStatusCodeException e) {
+            log.error("Error request /courses {} ", e);
+        }
+        log.info("Ending request /courses userId {} ", userId);
+        return result.getBody();
     }
-    log.info("Ending request /courses userId {} ", userId);
-    return result.getBody();
-  }
 
-  public void deleteUserInCourse(UUID userId){
-    String url = REQUEST_URL_COURSE + "/courses/users/" + userId;
-    restTemplate.exchange(url, HttpMethod.DELETE, null, String.class);
-  }
 }
