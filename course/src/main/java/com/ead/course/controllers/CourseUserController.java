@@ -6,6 +6,7 @@ import com.ead.course.models.CourseModel;
 import com.ead.course.models.UserModel;
 import com.ead.course.services.CourseService;
 import com.ead.course.services.UserService;
+import com.ead.course.specifications.SpecificationTemplate;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -26,20 +27,21 @@ public class CourseUserController {
     CourseService courseService;
 
     @Autowired
-    UserService courseUserService;
+    UserService userService;
 
     @GetMapping("/courses/{courseId}/users")
     public ResponseEntity<Object> getAllUsersByCourse(
+            SpecificationTemplate.UserSpec userSpec,
             @PageableDefault(page = 0, size = 10, sort = "userId", direction = Sort.Direction.ASC)
             Pageable pageable,
             @PathVariable(value = "courseId") UUID courseId) {
         Optional<CourseModel> courseModelOptional = courseService.findById(courseId);
-        if (!courseModelOptional.isPresent()) {
+        if (courseModelOptional.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body("Course Not Found.");
         }
         return ResponseEntity.status(HttpStatus.OK)
-                .body("");
+                .body(userService.findAll(SpecificationTemplate.userCourseId(courseId).and(userSpec), pageable));
     }
 
     // TODO: Review this method to use a validator
