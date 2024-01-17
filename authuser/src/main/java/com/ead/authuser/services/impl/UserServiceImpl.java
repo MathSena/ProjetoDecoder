@@ -1,9 +1,7 @@
 package com.ead.authuser.services.impl;
 
 import com.ead.authuser.clients.CourseClient;
-import com.ead.authuser.models.UserCourseModel;
 import com.ead.authuser.models.UserModel;
-import com.ead.authuser.repository.UserCourseRepository;
 import com.ead.authuser.repository.UserRepository;
 import com.ead.authuser.services.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -18,8 +16,6 @@ import java.util.Optional;
 import java.util.UUID;
 
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
@@ -30,8 +26,6 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserRepository userRepository;
 
-    @Autowired
-    UserCourseRepository userCourseRepository;
 
     @Autowired
     CourseClient courseClient;
@@ -59,16 +53,7 @@ public class UserServiceImpl implements UserService {
     @Transactional
     @Override
     public void delete(UserModel userModel) {
-        boolean deleteUserCourseInCourse = false;
-        List<UserCourseModel> userCourseModelList = userCourseRepository.findAllUserCourseIntoUser(userModel.getUserId());
-        if (!userCourseModelList.isEmpty()) {
-            userCourseRepository.deleteAll(userCourseModelList);
-            deleteUserCourseInCourse = true;
-        }
         userRepository.delete(userModel);
-        if (deleteUserCourseInCourse) {
-            courseClient.deleteUserInCourse(userModel.getUserId());
-        }
     }
 
     @Override

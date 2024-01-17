@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+- feat: Mapping State Transfer Pattern with Partial Data Replication
+  - Commit: feat: Mapping State Transfer Pattern with Partial Data Replication
+  - Author: MathSena
+  - Date: 16/01/2024
+
+- feat: Prepare EAD for Asynchronous Communication
+    - Commit: feat: Prepare EAD for Asynchronous Communication
+    - Author: MathSena
+    - Date: 16/01/2024
+
 - feat: Sync comunication with cliet-side discovery pattern
   - Commit: feat: Sync comunication with cliet-side discovery pattern
   - Author: MathSena
@@ -151,6 +161,4 @@ All notable changes to this project will be documented in this file.
 
 
 - Initial commit - Added `AuthUser`, `Course`, and `Notification` services and set up the database configuration.
-  - **Commit**: Initial commit - Adding AuthUser, Course, and Notification services and setting up the database configuration.
-  - **Author**: MathSena
-  - **Date**: 09/08/2023
+  - **Commit**: 
