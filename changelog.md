@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- feat: Create Publisher and publish Event State Transfer (CREATE)
+  - Commit: feat: Create Publisher and publish Event State Transfer (CREATE)
+  - Author: MathSena
+  - Date: 24/02/2024
+
+- feat: Starting with RabbitMQ and Spring AMQP
+  - Commit: feat: Starting with RabbitMQ and Spring AMQP
+  - Author: MathSena
+  - Date: 17/01/2024
 
 - feat: Mapping State Transfer Pattern with Partial Data Replication
   - Commit: feat: Mapping State Transfer Pattern with Partial Data Replication

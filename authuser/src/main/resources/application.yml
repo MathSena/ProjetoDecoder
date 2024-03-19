@@ -22,11 +22,17 @@ spring:
   output:
     ansi:
       enabled: Always
+  rabbitmq:
+    addresses: amqps://ikyduabx:bgivZPF1L09hbe6QyxNnvqTsOGN3gqv2@fish.rmq.cloudamqp.com/ikyduabx
 
 ead:
   api:
     url:
       course: 'http://ead-course-service'
+  broker:
+    exchange:
+      userEvent: ead.userevent
+
 
 eureka:
   client:
