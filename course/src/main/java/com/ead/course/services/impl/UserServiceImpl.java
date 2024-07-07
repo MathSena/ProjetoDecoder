@@ -12,6 +12,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 
 @Service
 @Slf4j
@@ -30,5 +32,15 @@ public class UserServiceImpl implements UserService {
     public UserModel save(UserModel userModel) {
         log.info("Saving user: {}", userModel);
         return userRepository.save(userModel);
+    }
+
+    @Override
+    public UserModel delete(UUID userId) {
+        log.info("Deleting user with ID: {}", userId);
+        var userModel = userRepository.findById(userId)
+                .orElseThrow();
+        userRepository.delete(userModel);
+        return userModel;
+
     }
 }

@@ -33,10 +33,12 @@ public class UserConsumer {
                 userService.save(userModel);
                 break;
             case UPDATE:
-                // Call the service to update the user
+                log.info("Updating userID: {}", userModel.getId());
+                userService.save(userModel);
                 break;
             case DELETE:
-                // Call the service to delete the user
+                log.info("Deleting userID: {}", userModel.getId());
+                userService.delete(userModel.getId());
                 break;
             default:
                 log.error("Invalid action type: {}", userEventDto.getActionType());

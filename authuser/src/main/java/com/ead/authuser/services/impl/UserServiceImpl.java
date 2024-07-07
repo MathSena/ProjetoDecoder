@@ -100,5 +100,30 @@ public class UserServiceImpl implements UserService {
         log.info("User with username: {} saved successfully.", user.getUsername());
         return savedUser;
     }
+
+    @Transactional
+    @Override
+    public void deleteUser(UserModel user) {
+        log.info("Deleting user with username: {}", user.getUsername());
+        userRepository.delete(user);
+        userEventPublisher.publishUserEvent(user.convertToUserEventDto(), ActionType.DELETE);
+        log.info("User with username: {} deleted successfully.", user.getUsername());
+    }
+
+    // TODO Review the flow to update an User
+    @Transactional
+    @Override
+    public UserModel updateUser(UserModel user) {
+        log.info("Updating user with username: {}", user.getUsername());
+        UserModel updatedUser = userRepository.save(user);
+        userEventPublisher.publishUserEvent(updatedUser.convertToUserEventDto(), ActionType.UPDATE);
+        log.info("User with username: {} updated successfully.", user.getUsername());
+        return updatedUser;
+    }
+
+    @Override
+    public UserModel updatePassword(UserModel userModel) {
+        return saveUser(userModel);
+    }
 }
 

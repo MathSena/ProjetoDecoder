@@ -26,4 +26,8 @@ public interface UserService {
   Page<UserModel> findAll(Specification<UserModel> spec, Pageable pageable);
 
   UserModel saveUser(UserModel user);
+
+  void deleteUser(UserModel user);
+  UserModel updateUser(UserModel user);
+  UserModel updatePassword(UserModel user);
 }

@@ -85,7 +85,7 @@ public class UserController {
                 .findById(userId)
                 .map(
                         user -> {
-                            userService.delete(user);
+                            userService.deleteUser(user);
                             return ResponseEntity.ok("User deleted successfully");
                         })
                 .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND)
@@ -116,7 +116,7 @@ public class UserController {
             userModel.setPhoneNumber(userDto.getPhoneNumber());
             userModel.setCpf(userDto.getCpf());
             userModel.setLastUpdateDate(LocalDateTime.now(ZoneId.of("UTC")));
-            userService.save(userModel);
+            userService.updateUser(userModel);
             return ResponseEntity.ok(userModel);
         }
     }
@@ -148,7 +148,7 @@ public class UserController {
             }
             userModel.setPassword(userDto.getPassword());
             userModel.setLastUpdateDate(LocalDateTime.now(ZoneId.of("UTC")));
-            userService.save(userModel);
+            userService.updatePassword(userModel);
             return ResponseEntity.ok("Password Updated");
         }
     }
@@ -175,7 +175,7 @@ public class UserController {
             UserModel userModel = userModelOptional.get();
             userModel.setImageUrl(userDto.getImageUrl());
             userModel.setLastUpdateDate(LocalDateTime.now(ZoneId.of("UTC")));
-            userService.save(userModel);
+            userService.updateUser(userModel);
             return ResponseEntity.ok(userModel);
         }
     }
