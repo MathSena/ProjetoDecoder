@@ -5,6 +5,7 @@ import com.ead.course.models.UserModel;
 import com.ead.course.repositories.UserRepository;
 import com.ead.course.services.UserService;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 
 @Service
+@Slf4j
 public class UserServiceImpl implements UserService {
 
     @Autowired
@@ -20,6 +22,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Page<UserModel> findAll(Specification<UserModel> spec, Pageable pageable) {
+        log.info("Searching for users with the following filters: {}", spec);
         return userRepository.findAll(spec, pageable);
+    }
+
+    @Override
+    public UserModel save(UserModel userModel) {
+        log.info("Saving user: {}", userModel);
+        return userRepository.save(userModel);
     }
 }
