@@ -41,18 +41,17 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public void delete(CourseModel courseModel) {
         List<ModuleModel> moduleModelList = moduleRepository.findAllLModulesIntoCourse(courseModel.getCourseId());
-        if (!moduleModelList.isEmpty()) {
-            for (ModuleModel module : moduleModelList) {
+        if (!moduleModelList.isEmpty()){
+            for(ModuleModel module : moduleModelList){
                 List<LessonModel> lessonModelList = lessonRepository.findAllLessonsIntoModule(module.getModuleId());
-                if (!lessonModelList.isEmpty()) {
+                if (!lessonModelList.isEmpty()){
                     lessonRepository.deleteAll(lessonModelList);
                 }
             }
             moduleRepository.deleteAll(moduleModelList);
         }
-
+        courseRepository.deleteCourseUserByCourse(courseModel.getCourseId());
         courseRepository.delete(courseModel);
-
     }
 
     @Override
@@ -78,6 +77,7 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public void saveSubscribedToCourse(UUID courseId, UUID userId) {
         courseRepository.saveCourseUser(courseId, userId);
-
     }
+
+
 }
