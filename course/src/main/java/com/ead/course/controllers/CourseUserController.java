@@ -41,7 +41,8 @@ public class CourseUserController {
                     .body("Course Not Found.");
         }
         return ResponseEntity.status(HttpStatus.OK)
-                .body(userService.findAll(SpecificationTemplate.userCourseId(courseId).and(userSpec), pageable));
+                .body(userService.findAll(SpecificationTemplate.userCourseId(courseId)
+                        .and(userSpec), pageable));
     }
 
     // TODO: Review this method to use a validator
@@ -56,9 +57,20 @@ public class CourseUserController {
                     .body("Course Not Found.");
         }
 
-        // TODO: Verification with state transfer
+        // TODO: Vecdorification with state transfer
+        if (courseService.existsByCourseAndUser(courseId, subscriptionDto.getUserId())) {
+            return ResponseEntity.status(HttpStatus.CONFLICT)
+                    .body("User already subscribed to this course.");
+        }
+        if (userService.findById(subscriptionDto.getUserId())
+                .isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("User Not Found.");
+        }
+
+        courseService.saveSubscribedToCourse(courseId, subscriptionDto.getUserId());
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body("");
+                .body("User subscribed to course successfully.");
     }
 
 }
