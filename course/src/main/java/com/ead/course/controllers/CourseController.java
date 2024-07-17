@@ -4,6 +4,7 @@ import com.ead.course.dtos.CourseDto;
 import com.ead.course.models.CourseModel;
 import com.ead.course.services.CourseService;
 import com.ead.course.specifications.SpecificationTemplate;
+import com.ead.course.validations.CourseValidator;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -14,6 +15,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -31,6 +33,10 @@ import java.util.UUID;
 public class CourseController {
     @Autowired
     CourseService courseService;
+
+    @Autowired
+    CourseValidator courseValidator;
+
     private static final String COURSE_NOT_FOUND_MSG = "Course with ID {} not found.";
 
     /**
@@ -40,7 +46,12 @@ public class CourseController {
      * @return Response entity with course data.
      */
     @PostMapping
-    public ResponseEntity<Object> saveCourse(@RequestBody @Valid CourseDto courseDto) {
+    public ResponseEntity<Object> saveCourse(@RequestBody @Valid CourseDto courseDto, Errors errors) {
+        courseValidator.validate(courseDto, errors);
+        if(errors.hasErrors()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(errors.getAllErrors());
+        }
         var courseModel = new CourseModel();
         BeanUtils.copyProperties(courseDto, courseModel);
         courseModel.setCreatedDate(LocalDateTime.now(ZoneId.of("UTC")));
