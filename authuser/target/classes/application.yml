@@ -1,58 +1,63 @@
-server:
-  port: 8087
-  servlet:
-    context-path: '/ead-authuser/'
+# server:
+#   port: 8087
+#   servlet:
+#     context-path: '/ead-authuser/'
 
 spring:
   application:
-    name: ead-authuser-service
-  datasource:
-    url: jdbc:postgresql://localhost:5432/ead_authuser
-    username: postgres
-    password: test
-  jpa:
-    hibernate:
-      ddl-auto: update
-      dialect: org.hibernate.dialect.PostgreSQLDialect
-      jdbc:
-        lob.non-contextual-creation: true
-    properties:
-      hibernate:
-        show_sql: true
-  output:
-    ansi:
-      enabled: Always
-  rabbitmq:
-    addresses: amqps://zzzvezfi:cKqzep4O3t_gP7hp4ksbzGifxlAA0IQl@moose.rmq.cloudamqp.com/zzzvezfi
+     name: ead-authuser-service
+  config:
+    import: 'configserver:'
+  cloud:
+    config:
+      discovery:
+        service-id: config-server
+#   datasource:
+#     url: jdbc:postgresql://localhost:5432/ead_authuser
+#     username: postgres
+#     password: test
+#   jpa:
+#     hibernate:
+#       ddl-auto: update
+#       dialect: org.hibernate.dialect.PostgreSQLDialect
+#       jdbc:
+#         lob.non-contextual-creation: true
+#     properties:
+#       hibernate:
+#         show_sql: true
+#   output:
+#     ansi:
+#       enabled: Always
+#   rabbitmq:
+#     addresses: amqps://ikyduabx:bgivZPF1L09hbe6QyxNnvqTsOGN3gqv2@fish.rmq.cloudamqp.com/ikyduabx
 
-ead:
-  api:
-    url:
-      course: 'http://ead-course-service'
-  broker:
-    exchange:
-      userEvent: ead.userevent
+# ead:
+#   api:
+#     url:
+#       course: 'http://ead-course-service'
+#   broker:
+#     exchange:
+#       userEvent: ead.userevent
 
+# eureka:
+#   client:
+#     serviceUrl:
+#       defaultZone: http://localhost:8761/eureka/
+#     instance:
+#       hostname: localhost
 
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
-    instance:
-      hostname: localhost
-
-resilience4j:
-  retry:
-    instances:
-      retryInstance:
-        maxAttempts: 3
-        waitDuration: 5s
-  circuitbreaker:
-    instances:
-        circuitBreakerInstance:
-          slidingWindowSize: 5
-          minimumNumberOfCalls: 2
-          permittedNumberOfCallsInHalfOpenState: 2
-          waitDurationInOpenState: 30s
-          failureRateThreshold: 80
-          slidingWindowType: TIME_BASED
+# resilience4j:
+#   retry:
+#     instances:
+#       retryInstance:
+#         maxAttempts: 3
+#         waitDuration: 5s
+#   circuitbreaker:
+#     instances:
+#         circuitBreakerInstance:
+#           slidingWindowSize: 5
+#           minimumNumberOfCalls: 2
+#           permittedNumberOfCallsInHalfOpenState: 2
+#           waitDurationInOpenState: 30s
+#           failureRateThreshold: 80
+#           slidingWindowType: TIME_BASED
