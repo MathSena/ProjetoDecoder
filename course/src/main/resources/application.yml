@@ -23,13 +23,19 @@ spring:
     ansi:
       enabled: Always
   rabbitmq:
-    address: amqps://ikyduabx:bgivZPF1L09hbe6QyxNnvqTsOGN3gqv2@fish.rmq.cloudamqp.com/ikyduabx
+    addresses: amqps://zzzvezfi:cKqzep4O3t_gP7hp4ksbzGifxlAA0IQl@moose.rmq.cloudamqp.com/zzzvezfi
 
 
 ead:
   api:
     url:
       authuser: 'http://ead-authuser-service'
+  broker:
+    exchange:
+      userEventExchange: ead.userevent
+    queue:
+      userEventQueue:
+        name: ead.userevent.ms.course
 
 eureka:
   client:
