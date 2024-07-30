@@ -10,13 +10,11 @@
         <module name="api-gateway" />
         <module name="course" />
         <module name="config-server" />
+        <module name="notification" />
         <module name="authuser" />
         <module name="service-registry" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="notification" target="17" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
